@@ -2,58 +2,15 @@
 
 {% block title %}RailGuard India - Railway Passenger Protection System{% endblock %}
 
-{% block extra_css %}
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
-{% endblock %}
-
 {% block content %}
-<!-- Futuristic Hero Section with Train -->
 <div class="hero-section">
-    <!-- Main content -->
-    <div class="hero-content">
-        <h1 class="hero-title">Rail<span class="title-accent">Guard</span> India</h1>
-        <p class="hero-subtitle">A comprehensive Railway Passenger Protection System to create a transparent, corruption-free passenger experience for over 23 million daily travelers.</p>
-        
-        <div class="hero-buttons">
-            <a href="{{ url_for('complaints') }}" class="btn-cyber btn-cyber-primary">Report a Complaint</a>
-            <a href="{{ url_for('dashboard') }}" class="btn-cyber">View Dashboard</a>
+    <div class="container text-center">
+        <h1 class="hero-title">RailGuard India</h1>
+        <p class="hero-subtitle">A comprehensive Railway Passenger Protection System to create a transparent, corruption-free passenger experience.</p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="{{ url_for('complaints') }}" class="btn btn-primary btn-lg">Report a Complaint</a>
+            <a href="{{ url_for('dashboard') }}" class="btn btn-outline-light btn-lg">View Dashboard</a>
         </div>
-    </div>
-    
-    <!-- Digital circuit lines -->
-    <div class="digital-circuit circuit-horizontal" style="width: 30%; top: 25%; left: 10%;"></div>
-    <div class="digital-circuit circuit-horizontal" style="width: 20%; top: 35%; right: 10%;"></div>
-    <div class="digital-circuit circuit-vertical" style="height: 30%; top: 40%; left: 20%;"></div>
-    <div class="digital-circuit circuit-vertical" style="height: 40%; top: 30%; right: 25%;"></div>
-    
-    <!-- Circuit nodes -->
-    <div class="circuit-node" style="top: 25%; left: 10%;"></div>
-    <div class="circuit-node" style="top: 25%; left: 40%;"></div>
-    <div class="circuit-node" style="top: 35%; right: 10%;"></div>
-    <div class="circuit-node" style="top: 35%; right: 30%;"></div>
-    <div class="circuit-node" style="top: 70%; left: 20%;"></div>
-    <div class="circuit-node" style="top: 30%; right: 25%;"></div>
-    <div class="circuit-node" style="top: 70%; right: 25%;"></div>
-    
-    <!-- Get started button -->
-    <div class="get-started-container">
-        <a href="{{ url_for('trust_id') }}" class="get-started-btn">Get Started</a>
-    </div>
-    
-    <!-- Train tracks -->
-    <div class="train-tracks"></div>
-    
-    <!-- Animated train -->
-    <div class="train">
-        <div class="train-window"></div>
-        <div class="train-window"></div>
-        <div class="train-window"></div>
-        <div class="train-window"></div>
-        <div class="train-window"></div>
-        <div class="wheel"></div>
-        <div class="wheel"></div>
-        <div class="wheel"></div>
-        <div class="train-light"></div>
     </div>
 </div>
 
