@@ -2,8 +2,72 @@
 
 {% block title %}RailGuard India - Railway Passenger Protection System{% endblock %}
 
+{% block extra_css %}
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/train-animation.css') }}">
+{% endblock %}
+
 {% block content %}
-<div class="hero-section">
+<!-- Train Animation Container -->
+<div class="animation-container">
+    <!-- Stars and Circuit Background -->
+    <div class="stars-bg"></div>
+    <div class="circuit-grid"></div>
+    
+    <!-- Title -->
+    <div class="title-container">
+        <h1 class="animated-title">RailGuard <span class="title-india">India</span></h1>
+    </div>
+    
+    <!-- Train Container -->
+    <div class="train-container"></div>
+    
+    <!-- Feature Cards -->
+    <div class="feature-cards-container">
+        <div class="animated-card" data-url="{{ url_for('complaints') }}">
+            <div class="animated-card-icon">
+                <i class="bi bi-chat-dots"></i>
+            </div>
+            <div class="animated-card-title">Complaint System</div>
+        </div>
+        
+        <div class="animated-card" data-url="{{ url_for('trust_id') }}">
+            <div class="animated-card-icon">
+                <i class="bi bi-shield-lock"></i>
+            </div>
+            <div class="animated-card-title">Trust ID</div>
+        </div>
+        
+        <div class="animated-card" data-url="{{ url_for('standing_zone') }}">
+            <div class="animated-card-icon">
+                <i class="bi bi-qr-code"></i>
+            </div>
+            <div class="animated-card-title">Standing Zone</div>
+        </div>
+        
+        <div class="animated-card" data-url="{{ url_for('ticket') }}">
+            <div class="animated-card-icon">
+                <i class="bi bi-ticket-perforated"></i>
+            </div>
+            <div class="animated-card-title">Tickets</div>
+        </div>
+        
+        <div class="animated-card" data-url="{{ url_for('seat_management') }}">
+            <div class="animated-card-icon">
+                <i class="bi bi-grid-3x3"></i>
+            </div>
+            <div class="animated-card-title">Seat Management</div>
+        </div>
+    </div>
+    
+    <!-- Replay Button -->
+    <button id="replayAnimationBtn" class="replay-btn">
+        <i class="bi bi-arrow-clockwise"></i>
+    </button>
+</div>
+
+<!-- Traditional Hero Section (kept as backup or supplement) -->
+<div class="hero-section d-none">
     <div class="container text-center">
         <h1 class="hero-title">RailGuard India</h1>
         <p class="hero-subtitle">A comprehensive Railway Passenger Protection System to create a transparent, corruption-free passenger experience.</p>
