@@ -87,13 +87,17 @@
     <div id="qrScannerContainer" class="position-fixed top-0 start-0 w-100 h-100 bg-dark bg-opacity-75 d-flex align-items-center justify-content-center" style="z-index: 2000; display: none;">
         <div class="card" style="width: 100%; max-width: 500px;">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h5 class="mb-0">Scan QR Code</h5>
+                <h5 class="mb-0">QR Code Scanner</h5>
                 <button id="closeScannerBtn" class="btn-close" aria-label="Close"></button>
             </div>
-            <div class="card-body">
-                <div id="qrScanner"></div>
-                <div id="scanResult" class="mt-3 text-center"></div>
-                <div class="mt-3 text-center">
+            <div class="card-body text-center">
+                <div class="mb-3">
+                    <i class="bi bi-qr-code-scan" style="font-size: 4rem;"></i>
+                </div>
+                <div id="scanResult" class="my-4 alert alert-info">
+                    Preparing scanner...
+                </div>
+                <div class="mt-3">
                     <button id="closeQRScannerBtn" class="btn btn-danger">Close Scanner</button>
                 </div>
             </div>
