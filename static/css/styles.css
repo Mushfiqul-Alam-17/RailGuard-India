@@ -1,0 +1,291 @@
+/* RailGuard India - Main Stylesheet */
+
+:root {
+  --primary: #0d6efd;
+  --secondary: #6c757d;
+  --success: #198754;
+  --danger: #dc3545;
+  --warning: #ffc107;
+  --info: #0dcaf0;
+  --light: #f8f9fa;
+  --dark: #212529;
+  --indian-red: #d95f5f;
+  --indian-green: #138808;
+  --indian-orange: #FF9933;
+  --indian-blue: #000080;
+}
+
+body {
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  padding-top: 56px;
+  background-color: #f4f6f9;
+}
+
+/* Navbar customization */
+.navbar-brand {
+  font-weight: 700;
+}
+
+.navbar-brand .logo-text {
+  color: var(--indian-green);
+}
+
+/* Card customization */
+.card {
+  border-radius: 0.5rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  margin-bottom: 1.5rem;
+  border: none;
+}
+
+.card-header {
+  background-color: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  font-weight: 600;
+}
+
+/* Dashboard stats */
+.stat-card {
+  border-left: 4px solid var(--primary);
+  transition: transform 0.2s;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+}
+
+.stat-card.complaint {
+  border-left-color: var(--danger);
+}
+
+.stat-card.high-risk {
+  border-left-color: var(--warning);
+}
+
+.stat-card.ticket {
+  border-left-color: var(--success);
+}
+
+.stat-card.trust-id {
+  border-left-color: var(--primary);
+}
+
+.stat-card.standing {
+  border-left-color: var(--info);
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/* QR code styling */
+.qr-container {
+  background: #fff;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  text-align: center;
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+.qr-code {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+/* Risk level indicators */
+.risk-high {
+  color: var(--danger);
+  font-weight: 600;
+}
+
+.risk-low {
+  color: var(--success);
+  font-weight: 600;
+}
+
+/* Seat map */
+.seat-map {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 1rem 0;
+}
+
+.seat {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.seat.vacant {
+  background-color: var(--success);
+  color: white;
+}
+
+.seat.occupied {
+  background-color: var(--danger);
+  color: white;
+}
+
+.seat.selected {
+  background-color: var(--primary);
+  color: white;
+}
+
+/* Standing zone indicators */
+.zone-indicator {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.zone-green {
+  background-color: var(--success);
+}
+
+.zone-yellow {
+  background-color: var(--warning);
+}
+
+.zone-red {
+  background-color: var(--danger);
+}
+
+/* Forms */
+.form-section {
+  background-color: #fff;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.form-label {
+  font-weight: 600;
+}
+
+/* Ticket details */
+.ticket-details {
+  background-color: #fff;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.ticket-title {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.ticket-info-item {
+  margin-bottom: 0.75rem;
+}
+
+.ticket-info-label {
+  font-weight: 600;
+  color: var(--secondary);
+}
+
+/* Home page hero */
+.hero-section {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+              url('https://source.unsplash.com/1600x900/?india,train') no-repeat center center;
+  background-size: cover;
+  padding: 5rem 0;
+  color: white;
+  margin-bottom: 3rem;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+/* Feature cards */
+.feature-card {
+  text-align: center;
+  padding: 2rem;
+  transition: transform 0.3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+}
+
+.feature-icon {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  color: var(--primary);
+}
+
+/* Footer */
+.footer {
+  background-color: var(--dark);
+  color: white;
+  padding: 3rem 0;
+  margin-top: 3rem;
+}
+
+.footer-title {
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.footer-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.footer-list li {
+  margin-bottom: 0.75rem;
+}
+
+.footer-list a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+}
+
+.footer-list a:hover {
+  color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.25rem;
+  }
+  
+  .qr-code {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .seat {
+    width: 40px;
+    height: 40px;
+    font-size: 0.8rem;
+  }
+}
