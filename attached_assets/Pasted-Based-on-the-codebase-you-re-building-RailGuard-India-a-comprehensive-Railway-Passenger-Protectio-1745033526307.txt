@@ -1,0 +1,56 @@
+Based on the codebase, you're building RailGuard India - a comprehensive Railway Passenger Protection System. Here's an in-depth breakdown:
+
+Core Purpose:
+
+Creating a transparent, corruption-free passenger experience for Indian Railways
+Addressing issues like illegal fines, seat disputes, and standing passenger management
+Key Components:
+
+Passenger Voice System (PVS):
+SMS-based complaint system for reporting TT (Ticket Checker) issues
+Real-time response mechanism
+Risk analysis of complaints using keywords
+Complaint tracking and resolution system
+Trust ID System:
+Blockchain-secured passenger identification
+Multiple verification methods:
+Phone-based
+Aadhaar-based (optional, encrypted)
+Kiosk mode (for users without smartphones)
+Offline verification support
+DPDP Act compliant data handling
+Standing Zone Management:
+QR code-based standing passenger allocation
+Coach and zone-specific assignments
+Digital proof for TT verification
+Real-time zone availability tracking
+Seat Management:
+Digital seat tracking system
+Reallocation management
+Dispute resolution system
+Real-time seat status updates
+Technical Architecture:
+
+Backend:
+Flask-based Python server
+PostgreSQL database (hosted on Neon)
+Twilio integration for SMS
+Blockchain implementation for Trust IDs
+Advanced encryption for sensitive data
+Frontend:
+Bootstrap 5 based responsive UI
+Real-time dashboard updates
+QR code generation and scanning
+Interactive complaint management
+Security Features:
+Encrypted Aadhaar handling
+Blockchain verification
+Anonymized phone numbers
+Secure QR codes
+Risk-based complaint categorization
+Deployment:
+Running on port 5000
+Gunicorn server for production
+Environment variable based configuration
+Database connection pooling
+The system is built as a complete solution to transform railway passenger experience by adding transparency, reducing corruption, and providing digital proof of various railway services.no need the code for now ,need ai use and twilio number ,its paid what to do minor issue htough
