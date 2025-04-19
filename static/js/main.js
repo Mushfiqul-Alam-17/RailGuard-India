@@ -242,6 +242,107 @@ function showAlert(message, type) {
     }
 }
 
+// Universal Modal Dismiss System
+// This adds a global click handler for dismissing any modal
+document.addEventListener('DOMContentLoaded', function() {
+    // Add keyboard shortcut (Escape key) for closing modals
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            dismissAllModals();
+        }
+    });
+    
+    // Once the DOM is loaded, enhance all modals with dismiss buttons
+    setTimeout(enhanceAllModals, 500);
+    
+    // Add observer to catch dynamically added modals
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.addedNodes.length) {
+                // Check if new modals were added
+                setTimeout(enhanceAllModals, 100);
+            }
+        });
+    });
+    
+    // Start observing the document body for modals
+    observer.observe(document.body, { childList: true, subtree: true });
+});
+
+// Function to dismiss all open modals
+function dismissAllModals() {
+    // Find all open modals and close them
+    const openModals = document.querySelectorAll('.modal.show');
+    openModals.forEach(modalElement => {
+        const modalInstance = bootstrap.Modal.getInstance(modalElement);
+        if (modalInstance) {
+            modalInstance.hide();
+        } else {
+            // Fallback if instance not available
+            modalElement.classList.remove('show');
+            modalElement.style.display = 'none';
+            document.body.classList.remove('modal-open');
+            const modalBackdrops = document.querySelectorAll('.modal-backdrop');
+            modalBackdrops.forEach(backdrop => backdrop.remove());
+        }
+    });
+}
+
+// Function to enhance all modals with dismiss button
+function enhanceAllModals() {
+    // Target all modals in the application
+    const allModals = document.querySelectorAll('.modal');
+    
+    allModals.forEach(modalElement => {
+        // Check if we've already enhanced this modal
+        if (!modalElement.classList.contains('enhanced-with-dismiss')) {
+            modalElement.classList.add('enhanced-with-dismiss');
+            
+            // Create dismiss button
+            const dismissButton = document.createElement('button');
+            dismissButton.classList.add('modal-dismiss-btn');
+            dismissButton.innerHTML = '×';
+            dismissButton.title = 'Dismiss All Popups';
+            dismissButton.setAttribute('type', 'button');
+            
+            // Style the dismiss button
+            dismissButton.style.position = 'absolute';
+            dismissButton.style.top = '10px';
+            dismissButton.style.right = '10px';
+            dismissButton.style.zIndex = '1060';
+            dismissButton.style.backgroundColor = '#ff3b30';
+            dismissButton.style.color = 'white';
+            dismissButton.style.border = 'none';
+            dismissButton.style.borderRadius = '50%';
+            dismissButton.style.width = '32px';
+            dismissButton.style.height = '32px';
+            dismissButton.style.fontSize = '20px';
+            dismissButton.style.lineHeight = '1';
+            dismissButton.style.cursor = 'pointer';
+            dismissButton.style.boxShadow = '0 2px 5px rgba(0,0,0,0.3)';
+            
+            // Add hover effect
+            dismissButton.addEventListener('mouseover', function() {
+                this.style.backgroundColor = '#ff1a1a';
+            });
+            
+            dismissButton.addEventListener('mouseout', function() {
+                this.style.backgroundColor = '#ff3b30';
+            });
+            
+            // Add click handler to dismiss all modals
+            dismissButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                dismissAllModals();
+            });
+            
+            // Add button to modal
+            modalElement.appendChild(dismissButton);
+        }
+    });
+}
+
 // Helper function to show ticket details
 function showTicketDetails(ticket) {
     const detailsContainer = document.getElementById('ticketDetailsContainer');
