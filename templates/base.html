@@ -83,22 +83,51 @@
         {% block content %}{% endblock %}
     </main>
 
-    <!-- QR Scanner Modal Container (hidden by default) -->
-    <div id="qrScannerContainer" class="position-fixed top-0 start-0 w-100 h-100 bg-dark bg-opacity-75 d-flex align-items-center justify-content-center" style="z-index: 2000; display: none;">
-        <div class="card" style="width: 100%; max-width: 500px;">
-            <div class="card-header d-flex justify-content-between align-items-center">
-                <h5 class="mb-0">QR Code Scanner</h5>
-                <button id="closeScannerBtn" class="btn-close" aria-label="Close"></button>
+    <!-- QR Scanner Modal - Ticket -->
+    <div class="modal fade" id="ticketScanModal" tabindex="-1" aria-labelledby="ticketScanModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ticketScanModalLabel">Scan Ticket QR Code</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="mb-3">
+                        <i class="bi bi-qr-code-scan" style="font-size: 4rem;"></i>
+                    </div>
+                    <div class="alert alert-info">
+                        Demo mode: Simulating ticket scan
+                    </div>
+                    <input type="hidden" id="ticketData" value="">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="demoTicketScanBtn">Demo Scan</button>
+                </div>
             </div>
-            <div class="card-body text-center">
-                <div class="mb-3">
-                    <i class="bi bi-qr-code-scan" style="font-size: 4rem;"></i>
+        </div>
+    </div>
+    
+    <!-- QR Scanner Modal - Zone -->
+    <div class="modal fade" id="zoneScanModal" tabindex="-1" aria-labelledby="zoneScanModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="zoneScanModalLabel">Scan Zone QR Code</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div id="scanResult" class="my-4 alert alert-info">
-                    Preparing scanner...
+                <div class="modal-body text-center">
+                    <div class="mb-3">
+                        <i class="bi bi-qr-code-scan" style="font-size: 4rem;"></i>
+                    </div>
+                    <div class="alert alert-info">
+                        Demo mode: Simulating zone scan
+                    </div>
+                    <input type="hidden" id="zoneData" value="">
                 </div>
-                <div class="mt-3">
-                    <button id="closeQRScannerBtn" class="btn btn-danger">Close Scanner</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="demoZoneScanBtn">Demo Scan</button>
                 </div>
             </div>
         </div>

@@ -1,124 +1,83 @@
-// QR Code Scanner functionality for RailGuard India - Simplified Version
+// QR Code Scanner functionality for RailGuard India - Bootstrap Modals Implementation
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Get DOM elements
+    // Get DOM elements for scan buttons
     const scanQRTicketBtn = document.getElementById('scanQRTicketBtn');
     const scanQRZoneBtn = document.getElementById('scanQRZoneBtn');
-    const scannerContainer = document.getElementById('qrScannerContainer');
-    const closeScannerBtn = document.getElementById('closeScannerBtn');
-    const closeQRScannerBtn = document.getElementById('closeQRScannerBtn');
-    const scanResult = document.getElementById('scanResult');
     
-    // Global state variables
-    let videoStream = null;
+    // Get DOM elements for demo scan buttons in modals
+    const demoTicketScanBtn = document.getElementById('demoTicketScanBtn');
+    const demoZoneScanBtn = document.getElementById('demoZoneScanBtn');
+    
+    // Get modal objects
+    const ticketScanModal = new bootstrap.Modal(document.getElementById('ticketScanModal'), {
+        keyboard: true,
+        backdrop: true
+    });
+    
+    const zoneScanModal = new bootstrap.Modal(document.getElementById('zoneScanModal'), {
+        keyboard: true,
+        backdrop: true
+    });
     
     // Attach click events to scan buttons
     if (scanQRTicketBtn) {
         scanQRTicketBtn.addEventListener('click', function() {
-            openQRScanner('ticketData');
+            // Show the ticket scan modal
+            ticketScanModal.show();
         });
     }
     
     if (scanQRZoneBtn) {
         scanQRZoneBtn.addEventListener('click', function() {
-            openQRScanner('zoneData');
+            // Show the zone scan modal
+            zoneScanModal.show();
         });
     }
     
-    // Attach close events to buttons
-    if (closeScannerBtn) {
-        closeScannerBtn.addEventListener('click', closeQRScanner);
-    }
-    
-    if (closeQRScannerBtn) {
-        closeQRScannerBtn.addEventListener('click', closeQRScanner);
-    }
-    
-    // Close scanner when clicking outside
-    scannerContainer?.addEventListener('click', function(event) {
-        if (event.target === scannerContainer) {
-            closeQRScanner();
-        }
-    });
-    
-    // Close scanner with Escape key
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape' && scannerContainer?.style.display === 'block') {
-            closeQRScanner();
-        }
-    });
-    
-    function openQRScanner(targetInputId) {
-        // Display the scanner container
-        if (scannerContainer) {
-            scannerContainer.style.display = 'block';
-        }
-        
-        if (scanResult) {
-            scanResult.textContent = "Accessing camera...";
-        }
-        
-        // Force close any existing streams first
-        stopVideoStream();
-        
-        // Use the demo function for now (for testing purposes)
-        const demoValue = targetInputId === 'ticketData' 
-            ? 'T12345-C04-S23' 
-            : 'Z12345-C02-Z03';
+    // Handle demo scan for ticket
+    if (demoTicketScanBtn) {
+        demoTicketScanBtn.addEventListener('click', function() {
+            const demoTicketData = 'T12345-C04-S23';
+            const ticketInput = document.getElementById('ticketData');
             
-        // For demo purposes - wait 2 seconds then use demo data
-        setTimeout(() => {
-            if (scanResult) {
-                scanResult.textContent = "Scan successful (demo mode)";
+            if (ticketInput) {
+                ticketInput.value = demoTicketData;
             }
             
-            // Set the input value
-            const input = document.getElementById(targetInputId);
-            if (input) {
-                input.value = demoValue;
-            }
+            // Close the modal
+            ticketScanModal.hide();
             
-            // Close after delay
+            // Trigger verification after a short delay
             setTimeout(() => {
-                closeQRScanner();
-                
-                // Trigger verification if appropriate
-                const btnId = targetInputId === 'ticketData' ? 'verifyTicketBtn' : 'verifyZoneBtn';
-                const verifyBtn = document.getElementById(btnId);
+                const verifyBtn = document.getElementById('verifyTicketBtn');
                 if (verifyBtn) {
                     verifyBtn.click();
                 }
-            }, 1000);
-        }, 1500);
+            }, 500);
+        });
     }
     
-    function closeQRScanner() {
-        // Stop the video stream if it exists
-        stopVideoStream();
-        
-        // Hide the scanner container
-        if (scannerContainer) {
-            scannerContainer.style.display = 'none';
-        }
-        
-        console.log('QR Scanner closed');
-    }
-    
-    function stopVideoStream() {
-        // Stop any video streams
-        if (videoStream) {
-            videoStream.getTracks().forEach(track => track.stop());
-            videoStream = null;
-        }
-        
-        // Also find and stop any video elements
-        const videos = document.querySelectorAll('video');
-        videos.forEach(video => {
-            if (video.srcObject) {
-                const tracks = video.srcObject.getTracks();
-                tracks.forEach(track => track.stop());
-                video.srcObject = null;
+    // Handle demo scan for zone
+    if (demoZoneScanBtn) {
+        demoZoneScanBtn.addEventListener('click', function() {
+            const demoZoneData = 'Z12345-C02-Z03';
+            const zoneInput = document.getElementById('zoneData');
+            
+            if (zoneInput) {
+                zoneInput.value = demoZoneData;
             }
+            
+            // Close the modal
+            zoneScanModal.hide();
+            
+            // Trigger verification after a short delay
+            setTimeout(() => {
+                const verifyBtn = document.getElementById('verifyZoneBtn');
+                if (verifyBtn) {
+                    verifyBtn.click();
+                }
+            }, 500);
         });
     }
 });
