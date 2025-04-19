@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const scannerContainer = document.getElementById('qrScannerContainer');
     const scanResult = document.getElementById('scanResult');
     const closeScannerBtn = document.getElementById('closeScannerBtn');
+    const closeQRScannerBtn = document.getElementById('closeQRScannerBtn');
     
     // Keep track of scanner state
     let scanner = null;
@@ -23,11 +24,32 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+    // Add multiple ways to close the scanner
     if (closeScannerBtn) {
         closeScannerBtn.addEventListener('click', function() {
             closeScanner();
         });
     }
+    
+    if (closeQRScannerBtn) {
+        closeQRScannerBtn.addEventListener('click', function() {
+            closeScanner();
+        });
+    }
+    
+    // Close scanner when clicking outside the modal
+    document.addEventListener('click', function(event) {
+        if (scannerContainer && event.target === scannerContainer) {
+            closeScanner();
+        }
+    });
+    
+    // Close scanner with Escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && scannerContainer && scannerContainer.style.display === 'block') {
+            closeScanner();
+        }
+    });
     
     // Initialize QR scanner
     function initScanner(targetInputId) {
@@ -95,17 +117,51 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Close scanner and release camera
     function closeScanner() {
-        if (scanner) {
-            try {
-                scanner.clear();
+        try {
+            // Check if scanner exists and has methods
+            if (scanner) {
+                // Only try these methods if they exist
+                if (typeof scanner.clear === 'function') {
+                    scanner.clear();
+                }
+                
+                if (typeof scanner.stop === 'function') {
+                    scanner.stop();
+                }
+                
+                // Reset scanner
                 scanner = null;
-            } catch (error) {
-                console.error('Error closing scanner:', error);
             }
-        }
-        
-        if (scannerContainer) {
-            scannerContainer.style.display = 'none';
+            
+            // Use alternative approach to stop camera
+            const videoElements = document.querySelectorAll('video');
+            videoElements.forEach(video => {
+                if (video.srcObject) {
+                    const tracks = video.srcObject.getTracks();
+                    tracks.forEach(track => track.stop());
+                    video.srcObject = null;
+                }
+            });
+            
+            // Force reset the HTML content of the scanner
+            const qrScannerElement = document.getElementById('qrScanner');
+            if (qrScannerElement) {
+                qrScannerElement.innerHTML = '';
+            }
+            
+            // Hide the container
+            if (scannerContainer) {
+                scannerContainer.style.display = 'none';
+            }
+            
+            console.log('Scanner closed successfully');
+        } catch (error) {
+            console.error('Error closing scanner:', error);
+            
+            // Force hide container even if there's an error
+            if (scannerContainer) {
+                scannerContainer.style.display = 'none';
+            }
         }
     }
     
