@@ -199,25 +199,56 @@ body {
 }
 
 /* Home page hero */
+/* Enhanced Hero section */
 .hero-section {
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(13, 110, 253, 0.8)), 
               url('https://source.unsplash.com/1600x900/?india,train') no-repeat center center;
   background-size: cover;
-  padding: 5rem 0;
+  padding: 8rem 0;
   color: white;
   margin-bottom: 3rem;
+  position: relative;
+  overflow: hidden;
+  animation: fadeIn 1s ease-out;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+  transform: translateX(-100%);
+  animation: slideIn 1.5s forwards;
 }
 
 .hero-title {
-  font-size: 3rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
+  font-size: 3.5rem !important;
+  font-weight: 800 !important;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  animation: fadeIn 1s ease-out 0.5s both;
 }
 
 .hero-subtitle {
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
-  opacity: 0.9;
+  font-size: 1.6rem !important;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  animation: fadeIn 1s ease-out 0.7s both;
+}
+
+.hero-section .btn {
+  transform: translateY(20px);
+  opacity: 0;
+  animation: fadeIn 1s ease-out 1s forwards;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.hero-section .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
 }
 
 /* Feature cards */
@@ -225,6 +256,7 @@ body {
   text-align: center;
   padding: 2rem;
   transition: transform 0.3s;
+  animation: cardScale 0.5s ease-in-out; /* Added animation */
 }
 
 .feature-card:hover {
@@ -273,19 +305,35 @@ body {
   .hero-title {
     font-size: 2rem;
   }
-  
+
   .hero-subtitle {
     font-size: 1.25rem;
   }
-  
+
   .qr-code {
     width: 150px;
     height: 150px;
   }
-  
+
   .seat {
     width: 40px;
     height: 40px;
     font-size: 0.8rem;
   }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes cardScale {
+  0% { transform: scale(0.9); }
+  100% { transform: scale(1); }
 }
